@@ -1,0 +1,110 @@
+# LLVM Monitor Configuration
+
+# Sources to monitor
+sources:
+  github_releases: true
+  github_commits: true
+  discourse: true
+  github_issues_pr: true
+  github_discussions: true  # requires GITHUB_TOKEN
+  blog: true
+
+# Components/topics to track
+# Updates related to these will have elevated priority
+components:
+  - amdgpu
+  - rocm
+  - hip
+  - clang
+  - mlir
+  - llvm-core
+  - codegen
+
+# Keywords for HIGH priority (components above are auto-included)
+high_priority_keywords:
+  - amdgpu
+  - amd
+  - rocm
+  - hip
+  - gpu
+  - breaking
+  - security
+  - vulnerability
+  - cve
+  - critical
+  - deprecat
+  - removed
+  - backend
+
+# Keywords for MEDIUM priority
+medium_priority_keywords:
+  - clang
+  - mlir
+  - codegen
+  - llvm
+  - optimization
+  - performance
+  - release
+  - new feature
+  - lldb
+  - lld
+  - flang
+
+# Discourse categories to monitor
+discourse_categories:
+  - rfc           # RFC proposals - always important
+  - announce      # Announcements
+  - clang         # Clang Frontend
+  - mlir          # MLIR
+  - llvm-dev      # LLVM Dev
+  - code-review   # Code Review
+
+# Schedule settings (for daemon mode)
+schedule:
+  mode: daily           # hourly | daily | manual | daemon
+  time: "09:00"         # Time for daily mode
+  interval_minutes: 60  # Interval for daemon mode
+
+# Notification settings
+notifications:
+  type: file            # file | desktop | email | console
+
+  # File output settings
+  file:
+    output_dir: "reports"
+    format: markdown    # markdown | json | text
+    keep_days: 30       # How many days to keep old reports
+
+  # Desktop notification settings (notify-send)
+  desktop:
+    only_high_priority: true
+
+  # Email settings (if needed later)
+  email:
+    smtp_server: ""
+    smtp_port: 587
+    from_address: ""
+    to_address: ""
+    only_high_priority: true
+
+# Filtering options
+filters:
+  # Minimum importance level to include in report
+  min_importance: low   # low | medium | high
+
+  # How many days back to look for commits
+  commits_days: 7
+
+  # Minimum comments for issues/PR to be included
+  min_comments_issues: 5
+
+  # Exclude topics older than N days (for Discourse)
+  max_topic_age_days: 60
+
+# GitHub API settings
+github:
+  # Token can be set here or via GITHUB_TOKEN env variable
+  token: ""
+
+# State file (for tracking already seen items)
+state_file: "llvm_monitor_state.json"

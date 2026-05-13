@@ -1,0 +1,21 @@
+# Reports (generated daily)
+reports/
+
+# Logs
+logs/
+
+# State file (contains runtime data)
+llvm_monitor_state.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
