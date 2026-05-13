@@ -7,6 +7,7 @@ This package contains specialized agents for monitoring the LLVM ecosystem:
 - GitHubAgent: Fetches data from GitHub (releases, commits, issues, PRs)
 - DiscourseAgent: Fetches discussions from LLVM Discourse
 - BlogAgent: Parses LLVM blog posts
+- SemiAnalysisAgent: Monitors SemiAnalysis newsletter for AMD news
 - AnalyzerAgent: Analyzes and prioritizes collected items
 - ReporterAgent: Generates reports in various formats
 """
@@ -22,6 +23,7 @@ from .base import (
 from .github_agent import GitHubAgent
 from .discourse_agent import DiscourseAgent
 from .blog_agent import BlogAgent
+from .semianalysis_agent import SemiAnalysisAgent
 from .analyzer_agent import AnalyzerAgent
 from .reporter_agent import ReporterAgent
 from .orchestrator import Orchestrator
@@ -36,6 +38,7 @@ __all__ = [
     'GitHubAgent',
     'DiscourseAgent',
     'BlogAgent',
+    'SemiAnalysisAgent',
     'AnalyzerAgent',
     'ReporterAgent',
     'Orchestrator',

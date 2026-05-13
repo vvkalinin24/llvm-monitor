@@ -8,6 +8,7 @@ sources:
   github_issues_pr: true
   github_discussions: true  # requires GITHUB_TOKEN
   blog: true
+  semianalysis: true  # SemiAnalysis newsletter - AMD industry news
 
 # Components/topics to track
 # Updates related to these will have elevated priority

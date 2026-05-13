@@ -13,6 +13,7 @@ from .base import BaseAgent, AgentMessage, MessageType, NewsItem
 from .github_agent import GitHubAgent
 from .discourse_agent import DiscourseAgent
 from .blog_agent import BlogAgent
+from .semianalysis_agent import SemiAnalysisAgent
 from .analyzer_agent import AnalyzerAgent
 from .reporter_agent import ReporterAgent
 
@@ -41,6 +42,7 @@ class Orchestrator(BaseAgent):
             'github': GitHubAgent(config),
             'discourse': DiscourseAgent(config),
             'blog': BlogAgent(config),
+            'semianalysis': SemiAnalysisAgent(config),
             'analyzer': AnalyzerAgent(config),
             'reporter': ReporterAgent(config),
         }
@@ -143,7 +145,7 @@ class Orchestrator(BaseAgent):
 
     def _collect_parallel(self) -> list[NewsItem]:
         """Run collector agents in parallel."""
-        collectors = ['github', 'discourse', 'blog']
+        collectors = ['github', 'discourse', 'blog', 'semianalysis']
         enabled_sources = self.get_config('sources', {})
 
         # Filter to enabled collectors
@@ -152,7 +154,8 @@ class Orchestrator(BaseAgent):
             source_key = {
                 'github': 'github_releases',  # Just check one github source
                 'discourse': 'discourse',
-                'blog': 'blog'
+                'blog': 'blog',
+                'semianalysis': 'semianalysis'
             }.get(name, name)
 
             if enabled_sources.get(source_key, True):
